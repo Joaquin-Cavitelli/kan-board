@@ -244,16 +244,14 @@ const Column = ({
   const filteredCards = cards.filter((c) => c.column === column);
 
   const calculateColumnPrice = (column) => {
-    return cards
+    const sum = cards
       .filter((card) => card.column === column && card.price)
       .reduce((sum, card) => sum + parseFloat(card.price || 0), 0);
+    
+    return parseFloat(sum.toFixed(2)); 
   };
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat("es-ES", {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+  
+
 
   return (
     <div className="shrink-0">
@@ -262,8 +260,8 @@ const Column = ({
           <h3 className={`font-medium text-sm`}>{title}</h3>
           <span className="">{filteredCards.length}</span>
         </div>
-        <p className="text-xl leading-5">
-          ${formatPrice(calculateColumnPrice(column))}
+        <p className="text-2xl font-semibold leading-5">
+          {calculateColumnPrice(column)}M
         </p>
       </div>
       <div
@@ -315,11 +313,6 @@ const Card = ({
   const isToday = deadline === today;
   const isPast = deadline && deadline < today;
 
-  const borderColor = isToday
-    ? "border-yellow-500"
-    : isPast
-    ? "border-red-500"
-    : "";
 
   const formatDate = (dateString) => {
     if (!dateString) return "";
@@ -331,17 +324,6 @@ const Card = ({
       year: "numeric",
     };
     return new Date(localDateString).toLocaleDateString("es-ES", options);
-  };
-
-  const formatPrice = (price) => {
-    if (!price) return "";
-    // Usa Intl.NumberFormat para formatear el precio
-    return new Intl.NumberFormat("es-ES", {
-      style: "currency",
-      currency: "ARS",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
   };
 
   return (
@@ -378,7 +360,7 @@ const Card = ({
             {title}
           </p>
           {price && (
-            <p className="text-xs text-gray-500">{formatPrice(price)}</p>
+            <p className="text-xs text-gray-500">{price}M</p>
           )}
         </div>
         {description && (
@@ -540,6 +522,7 @@ const CardModal = ({ modalData, setModalData, setCards }) => {
             <input
               type="number"
               value={price}
+              step="0.01"
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Price"
               className="w-full text-sm  p-3 rounded border border-gray-300 outline-none"
