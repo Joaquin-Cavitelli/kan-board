@@ -90,7 +90,7 @@ const Board = () => {
           setModalData={setModalData}
         />
         <Column
-          title="Clientes"
+          title="Pendientes"
           column="todo"
           headingColor="bg-[#ed6c02]"
           cards={cards}
@@ -98,7 +98,7 @@ const Board = () => {
           setModalData={setModalData}
         />
         <Column
-          title="Pendientes"
+          title="Seguimiento"
           column="doing"
           headingColor="bg-[#006db3]"
           cards={cards}
