@@ -365,7 +365,7 @@ const Card = ({
             {title}
           </p>
           {price && (
-            <p className="text-xs text-gray-500">{price}M</p>
+            <p className="text-xs text-gray-500">${price}</p>
           )}
         </div>
         {description && (
