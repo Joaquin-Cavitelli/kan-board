@@ -244,13 +244,18 @@ const Column = ({
   const filteredCards = cards.filter((c) => c.column === column);
 
   const calculateColumnPrice = (column) => {
-    const sum = cards
-      .filter((card) => card.column === column && card.price)
-      .reduce((sum, card) => sum + parseFloat(card.price || 0), 0);
-    
-    return parseFloat(sum.toFixed(2)); 
-  };
-  
+  const sum = cards
+    .filter((card) => card.column === column && card.price)
+    .reduce((sum, card) => sum + parseFloat(card.price || 0), 0);
+
+  return sum.toLocaleString('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+};
+
 
 
   return (
@@ -261,7 +266,7 @@ const Column = ({
           <span className="">{filteredCards.length}</span>
         </div>
         <p className="text-2xl font-semibold leading-5">
-          {calculateColumnPrice(column)}M
+          {calculateColumnPrice(column)}
         </p>
       </div>
       <div
