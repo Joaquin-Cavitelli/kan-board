@@ -82,7 +82,7 @@ const Board = () => {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-6  w-full gap-4 p-12 ">
         <Column
-          title="Tareas"
+          title="Mensajes"
           column="backlog"
           headingColor="bg-gray-600"
           cards={cards}
@@ -90,7 +90,7 @@ const Board = () => {
           setModalData={setModalData}
         />
         <Column
-          title="Pendientes"
+          title="Tareas"
           column="todo"
           headingColor="bg-[#ed6c02]"
           cards={cards}
@@ -98,7 +98,7 @@ const Board = () => {
           setModalData={setModalData}
         />
         <Column
-          title="Seguimiento"
+          title="Comisiones"
           column="doing"
           headingColor="bg-[#006db3]"
           cards={cards}
@@ -106,7 +106,7 @@ const Board = () => {
           setModalData={setModalData}
         />
         <Column
-          title="Completado"
+          title="Envios"
           column="done"
           headingColor="bg-[#2e7d32]"
           cards={cards}
@@ -114,7 +114,7 @@ const Board = () => {
           setModalData={setModalData}
         />
         <Column
-          title="Rechazado"
+          title="Sin Comisiones"
           column="rejected"
           headingColor="bg-[#d32f2f]"
           cards={cards}
